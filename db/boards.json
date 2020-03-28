@@ -1,0 +1,27 @@
+{
+	"board1": {
+    "name": "Crafts",
+    "description": "Things I would like to try at home",
+		"uid": "c3eTnQHRKNPVE66AWzCEeQiEepF2"
+	},
+	"board2": {
+    "name": "Cake",
+    "description": "I can totally bake these...",
+		"uid": "annauid"
+	},
+	"board3": {
+		"name": "Food",
+    "description": "Meal ideas and recipes",
+		"uid": "c3eTnQHRKNPVE66AWzCEeQiEepF2"
+  },
+  "board4": {
+		"name": "Closet",
+    "description": "Clothes and outfits that I like",
+		"uid": "c3eTnQHRKNPVE66AWzCEeQiEepF2"
+  },
+  "board5": {
+		"name": "Garden",
+    "description": "Landscaping thoughts.",
+		"uid": "kellyuid"
+	}
+}
