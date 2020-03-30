@@ -8,3 +8,24 @@ body {
 .hide {
   display: none;
 }
+
+.pin-card {
+  margin: 1%;
+}
+
+.img-container {
+  height: 150px;
+  overflow: hidden;
+  img {
+    width: 100%;
+  }
+}
+
+nav {
+  background-color: red;
+}
+
+.card-header {
+  background-color: red;
+  color: white;
+}

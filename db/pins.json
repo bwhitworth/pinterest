@@ -11,7 +11,7 @@
   },
   "pin3": {
     "name": "String Art",
-    "imageUrl": "https://i.ytimg.com/vi/U-diObeiBeQ/maxresdefault.jpg",
+    "imageUrl": "https://img1.etsystatic.com/186/0/13020203/il_570xN.1381656651_31kt.jpg",
 		"boardId": "board1"
   },
   "pin4": {
@@ -23,5 +23,10 @@
     "name": "White & Khaki",
     "imageUrl": "https://stylishwomenoutfits.com/wp-content/uploads/2015/01/Business-Casual-for-Women-1.jpg",
 		"boardId": "board4"
+  },
+  "pin6": {
+    "name": "Keto Tuscan Chicken",
+    "imageUrl": "https://purewows3.imgix.net/images/articles/2017_06/slide-1-keto-dinners.jpg?auto=format,compress&cs=strip",
+		"boardId": "board3"
   }
 }
