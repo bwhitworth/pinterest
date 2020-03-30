@@ -3,6 +3,9 @@ import apiKeys from '../apiKeys.json';
 
 const baseUrl = apiKeys.firebaseKeys.databaseURL;
 
+// GETS DATA FROM BOARDS.JSON IN FIREBASE,
+// RETRIEVES DATA FOR BOARDS THAT BELONG TO LOGGED IN USER (uid SAME)
+// ADDS NEW ID KEY TO EACH OBJECT, THEN PUSHES INTO EMTPY ARRAY (userBoards)
 const getUserBoards = (uid) => new Promise((resolve, reject) => {
   axios.get(`${baseUrl}/boards.json?orderBy="uid"&equalTo="${uid}"`)
     .then((response) => {

@@ -1,10 +1,14 @@
 import utils from '../../helpers/utils';
 import pinData from '../../helpers/data/pinData';
 
+// HIDES THE SINGLE BOARD MODAL
 const closeSingleBoardView = () => {
   $('#singleBoardModal').modal('hide');
 };
 
+// CALLS getPins TO GET ONLY PINS BELONGING TO THE BOARD CLICKED ON
+// BUILDS (MINI) CARD FOR EACH PIN AND PRINTS INTO MODAL CONTAINER
+// ASSIGNS CLICK EVENT TO BUTTON WHICH CLOSES SINGLE BOARD MODAL
 const pinBuilder = (e) => {
   const boardId = e.target.closest('.card').id;
   pinData.getPins(boardId)
