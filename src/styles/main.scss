@@ -1,8 +1,9 @@
 @import "~bootstrap/scss/bootstrap";
 @import "~@fortawesome/fontawesome-free/css/all.min.css";
+@import "./colors";
 
 body {
-  background-color: whitesmoke;
+  background-color: $offwhite;
 }
 
 .hide {
@@ -21,11 +22,20 @@ body {
   }
 }
 
+i {
+  color: $red;
+}
+
 nav {
-  background-color: red;
+  background-color: $offwhite;
+  border-bottom: solid $gray 2px;
+  color: $gray;
+  button {
+    background-color: $gray;
+  }
 }
 
 .card-header {
-  background-color: red;
+  background-color: $red;
   color: white;
 }
