@@ -1,6 +1,10 @@
 import utils from '../../helpers/utils';
 import pinData from '../../helpers/data/pinData';
 
+const closeSingleBoardView = () => {
+  $('#singleBoardModal').modal('hide');
+};
+
 const pinBuilder = (e) => {
   const boardId = e.target.closest('.card').id;
   pinData.getPins(boardId)
@@ -22,6 +26,7 @@ const pinBuilder = (e) => {
     })
     .catch((err) => console.error('problem with boardBuilder', err));
   $('#singleBoardModal').modal('show');
+  $('#close-board').on('click', closeSingleBoardView);
 };
 
 export default { pinBuilder };
