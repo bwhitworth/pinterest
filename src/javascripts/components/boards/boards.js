@@ -28,7 +28,7 @@ const boardBuilder = () => {
       utils.printToDom('boards', domString);
     })
     .catch((err) => console.error('problem with boardBuilder', err));
-  $('body').on('click', '.board-card', pinsComp.pinBuilder);
+  $('body').on('click', '.board-card', pinsComp.pinModalBuilder);
 };
 
 export default { boardBuilder };

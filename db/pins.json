@@ -28,5 +28,25 @@
     "name": "Keto Tuscan Chicken",
     "imageUrl": "https://purewows3.imgix.net/images/articles/2017_06/slide-1-keto-dinners.jpg?auto=format,compress&cs=strip",
 		"boardId": "board3"
+  },
+  "pin7": {
+    "name": "Felt Llamas",
+    "imageUrl": "https://cdn.notonthehighstreet.com/fs/90/a1/0d37-2585-4517-a0f6-54680bc3825d/original_llamas-felt-craft-kit.jpg",
+		"boardId": "board1"
+  },
+  "pin8": {
+    "name": "String Art",
+    "imageUrl": "https://img1.etsystatic.com/186/0/13020203/il_570xN.1381656651_31kt.jpg",
+		"boardId": "board1"
+  },
+  "pin9": {
+    "name": "Felt Llamas",
+    "imageUrl": "https://cdn.notonthehighstreet.com/fs/90/a1/0d37-2585-4517-a0f6-54680bc3825d/original_llamas-felt-craft-kit.jpg",
+		"boardId": "board1"
+  },
+  "pin10": {
+    "name": "String Art",
+    "imageUrl": "https://img1.etsystatic.com/186/0/13020203/il_570xN.1381656651_31kt.jpg",
+		"boardId": "board1"
   }
 }
