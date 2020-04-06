@@ -3,6 +3,7 @@ import firebase from 'firebase/app';
 import 'firebase/auth';
 import apiKeys from '../../helpers/apiKeys.json';
 import utils from '../../helpers/utils';
+import pinData from '../../helpers/data/pinData';
 import boardData from '../../helpers/data/boardData';
 import pinsComp from '../pins/pins';
 
@@ -13,8 +14,15 @@ const deleteBoard = (e) => new Promise((resolve, reject) => {
   const boardToDelete = e.target.closest('.delete-board').id;
   axios.delete(`${baseUrl}/boards/${boardToDelete}.json`)
     .then((response) => {
+      pinData.getPins(boardToDelete)
+        .then((board) => {
+          board.forEach((p) => {
+            axios.delete(`${baseUrl}/pins/${p.id}.json`);
+          });
+        });
       // eslint-disable-next-line no-use-before-define
       boardBuilder();
+      utils.printToDom('single-board', '');
       resolve(response);
     })
     .catch((err) => reject(err));
