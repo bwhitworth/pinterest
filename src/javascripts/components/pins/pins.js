@@ -10,8 +10,6 @@ const baseUrl = apiKeys.firebaseKeys.databaseURL;
 //   $('#singleBoardModal').modal('hide');
 // };
 
-let openBoard = '';
-
 // DELETES SINGLE PIN WHEN TRASH BUTTON IS CLICKED
 const deletePin = (e) => new Promise((resolve, reject) => {
   const pinToDelete = e.target.closest('.pin-card').id;
@@ -51,12 +49,10 @@ const pinCardBuilder = (boardId) => {
 // ASSIGNS CLICK EVENTS FOR: CLOSE SINGLE BOARD VIEW AND DELETE PINS
 const pinModalBuilder = (e) => {
   const boardId = e.target.closest('.card').id;
-  openBoard = e.target.closest('.card').id;
   pinCardBuilder(boardId);
   // $('#singleBoardModal').modal('show');
   // $('#close-board').on('click', closeSingleBoardView);
   $('body').on('click', '.delete-btn', deletePin);
-  console.error('board:', openBoard);
 };
 
 export default { pinModalBuilder };
