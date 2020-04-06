@@ -13,14 +13,17 @@ const baseUrl = apiKeys.firebaseKeys.databaseURL;
 let openBoard = '';
 
 // DELETES SINGLE PIN WHEN TRASH BUTTON IS CLICKED
-const deletePin = (e) => {
+const deletePin = (e) => new Promise((resolve, reject) => {
   const pinToDelete = e.target.closest('.pin-card').id;
-  const boardOfPin = e.target.closest('.card-body').id;
-  console.error('deleted:', pinToDelete);
-  axios.delete(`${baseUrl}/pins/${pinToDelete}.json`);
-  // eslint-disable-next-line no-use-before-define
-  pinCardBuilder(boardOfPin);
-};
+  const parentBoard = e.target.closest('.card-body').id;
+  axios.delete(`${baseUrl}/pins/${pinToDelete}.json`)
+    .then((response) => {
+      // eslint-disable-next-line no-use-before-define
+      pinCardBuilder(parentBoard);
+      resolve(response);
+    })
+    .catch((err) => reject(err));
+});
 
 const pinCardBuilder = (boardId) => {
   pinData.getPins(boardId)
