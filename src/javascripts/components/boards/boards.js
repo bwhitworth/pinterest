@@ -9,7 +9,8 @@ import pinsComp from '../pins/pins';
 
 const baseUrl = apiKeys.firebaseKeys.databaseURL;
 
-// DELETES SINGLE PIN WHEN TRASH BUTTON IS CLICKED
+// DELETES SINGLE BOARD WHEN TRASH BUTTON IS CLICKED
+// THEN RE-PRINTS REMAINING BOARDS (REFRESHED VERSION)
 const deleteBoard = (e) => new Promise((resolve, reject) => {
   const boardToDelete = e.target.closest('.delete-board').id;
   axios.delete(`${baseUrl}/boards/${boardToDelete}.json`)
@@ -22,7 +23,6 @@ const deleteBoard = (e) => new Promise((resolve, reject) => {
         });
       // eslint-disable-next-line no-use-before-define
       boardBuilder();
-      utils.printToDom('single-board', '');
       resolve(response);
     })
     .catch((err) => reject(err));
@@ -30,6 +30,7 @@ const deleteBoard = (e) => new Promise((resolve, reject) => {
 
 // CALLS getUserBoards TO GET ONLY BOARDS BELONGING TO LOGGED-IN USER
 // BUILDS CARD FOR EACH BOARD AND PRINTS INTO boards DIV
+// ASSIGNS CLICK EVENT TO EACH DELETE BUTTON, WHICH WILL DELETE BOARD
 // ASSIGNS CLICK EVENT TO EACH CARD, WHICH WILL OPEN SINGLE VIEW AND BUILD PINS
 const boardBuilder = () => {
   let domString = '';
@@ -46,7 +47,7 @@ const boardBuilder = () => {
         domString += `      <p class="card-text">${b.description}</>`;
         domString += '    </div>';
         domString += '  </div>';
-        domString += `    <button class="col-12 btn btn-secondary delete-board" id="${b.id}"><i class="far fa-trash-alt text-white"></i></button>`;
+        domString += `    <button class="col-12 btn btn-secondary delete delete-board" id="${b.id}"><i class="far fa-trash-alt text-white"></i> Delete Board</button>`;
         domString += '</div>';
       });
       domString += '</div>';

@@ -6,11 +6,12 @@ import pinData from '../../helpers/data/pinData';
 const baseUrl = apiKeys.firebaseKeys.databaseURL;
 
 // HIDES THE SINGLE BOARD MODAL
-// const closeSingleBoardView = () => {
-//   $('#singleBoardModal').modal('hide');
-// };
+const closeSingleBoardView = () => {
+  $('#singleBoardModal').modal('hide');
+};
 
 // DELETES SINGLE PIN WHEN TRASH BUTTON IS CLICKED
+// THEN RE-PRINTS REMAINING PINS (REFRESHED VERSION)
 const deletePin = (e) => new Promise((resolve, reject) => {
   const pinToDelete = e.target.closest('.pin-card').id;
   const parentBoard = e.target.closest('.card-body').id;
@@ -23,6 +24,8 @@ const deletePin = (e) => new Promise((resolve, reject) => {
     .catch((err) => reject(err));
 });
 
+// GETS PINS FOR THE BOARD THAT WAS PASSED IN
+// BUILDS (MINI) CARD FOR EACH PIN AND PRINTS INTO BOARD CONTAINER
 const pinCardBuilder = (boardId) => {
   pinData.getPins(boardId)
     .then((board) => {
@@ -35,23 +38,23 @@ const pinCardBuilder = (boardId) => {
         domString += '  </div>';
         domString += `  <div class="card-body" id="${boardId}">`;
         domString += `    <p class="card-text">${p.name}</p>`;
-        domString += `    <button class="btn btn-secondary delete-btn" id="delete-${p.id}"><i class="far fa-trash-alt text-white"></i></button>`;
+        domString += `    <button class="btn btn-secondary delete delete-btn" id="delete-${p.id}"><i class="far fa-trash-alt text-white"></i> Delete Pin</button>`;
         domString += '  </div>';
         domString += '</div>';
       });
       domString += '</div>';
-      utils.printToDom('single-board', domString);
+      utils.printToDom('single-board-modal', domString);
     });
 };
 
-// CALLS getPins TO GET ONLY PINS BELONGING TO THE BOARD CLICKED ON
-// BUILDS (MINI) CARD FOR EACH PIN AND PRINTS INTO MODAL CONTAINER
-// ASSIGNS CLICK EVENTS FOR: CLOSE SINGLE BOARD VIEW AND DELETE PINS
+// TARGETS THE BOARD CLICKED ON AND PASSES INTO PINCARDBUILDER
+// OPENS SINGLE BOARD VIEW MODAL
+// ASSIGNS CLICK EVENTS FOR: CLOSE SINGLE BOARD VIEW MODAL AND DELETE PIN BUTTONS
 const pinModalBuilder = (e) => {
   const boardId = e.target.closest('.card').id;
   pinCardBuilder(boardId);
-  // $('#singleBoardModal').modal('show');
-  // $('#close-board').on('click', closeSingleBoardView);
+  $('#singleBoardModal').modal('show');
+  $('#close-board').on('click', closeSingleBoardView);
   $('body').on('click', '.delete-btn', deletePin);
 };
 

@@ -6,12 +6,30 @@ body {
   background-color: $offwhite;
 }
 
-.hide {
-  display: none;
+nav {
+  background-color: $offwhite;
+  border-bottom: solid $gray 2px;
+  color: $gray;
+  button {
+    background-color: $gray;
+  }
 }
 
-.pin-card {
-  margin: 1%;
+i {
+  color: $red;
+}
+
+.card-header {
+  background-color: $red;
+  color: white;
+}
+
+.delete {
+  font-size: 10px;
+}
+
+.hide {
+  display: none;
 }
 
 .img-container {
@@ -22,20 +40,6 @@ body {
   }
 }
 
-i {
-  color: $red;
-}
-
-nav {
-  background-color: $offwhite;
-  border-bottom: solid $gray 2px;
-  color: $gray;
-  button {
-    background-color: $gray;
-  }
-}
-
-.card-header {
-  background-color: $red;
-  color: white;
+.pin-card {
+  margin: 1%;
 }
