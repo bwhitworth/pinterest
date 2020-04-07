@@ -38,12 +38,12 @@ const pinCardBuilder = (boardId) => {
         domString += '  </div>';
         domString += `  <div class="card-body" id="${boardId}">`;
         domString += `    <p class="card-text">${p.name}</p>`;
-        domString += `    <button class="btn btn-secondary delete delete-btn" id="delete-${p.id}"><i class="far fa-trash-alt text-white"></i> Delete Pin</button>`;
+        domString += `    <button class="btn btn-secondary delete delete-btn" id="delete-${p.id}"><i class="far fa-trash-alt"></i> Delete Pin</button>`;
         domString += '  </div>';
         domString += '</div>';
       });
       domString += '</div>';
-      utils.printToDom('single-board-modal', domString);
+      utils.printToDom('single-board-modal-container', domString);
     });
 };
 

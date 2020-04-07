@@ -24,13 +24,23 @@
       <div class="modal-content">
         <div class="modal-header">
           <h5 class="modal-title" id="exampleModalLabel">Pins on this Board:</h5>
-          <button id="close-board" class="btn btn-outline-dark"><i class="far fa-times-circle"></i> Close</button>
+          <button id="close-board" class="btn btn-outline-secondary"><i class="far fa-times-circle"></i> Close</button>
         </div>
-        <div id="single-board-modal" class="modal-body"></div>
+        <div id="single-board-modal-container" class="modal-body"></div>
       </div>
     </div>
   </div>
-  <!-- SINGLE BOARD DIV -->
-  <div id="single-board"></div>
+    <!-- NEW BOARD INPUT FORM MODAL -->
+    <div class="modal fade" id="newBoardModal" tabindex="-1" role="dialog" aria-labelledby="boardInputModalLabel" aria-hidden="true">
+      <div class="modal-dialog  modal-lg" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel">New Board:</h5>
+            <button id="close-board-form" class="btn btn-outline-secondary"><i class="far fa-times-circle"></i> Cancel</button>
+          </div>
+          <div id="new-board-modal-container" class="modal-body"></div>
+        </div>
+      </div>
+    </div>
 </body>
 </html>
