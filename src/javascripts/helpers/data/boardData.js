@@ -20,20 +20,6 @@ const getUserBoards = (uid) => new Promise((resolve, reject) => {
     .catch((err) => reject(err));
 });
 
-const addNewBoard = () => {
-  let lengthVar = 'one';
-  axios.get(`${baseUrl}/boards.json`)
-    .then((response) => {
-      lengthVar = response.data.length; // this doesn't work
-      console.error('lengthVar:', lengthVar);
-    });
-  const newBoard = {
-    [lengthVar]: { // need something for it's id (board 6)... and what syntax?
-      name: $('#input-board-name').val(),
-      description: $('#input-board-desc').val(),
-    },
-  };
-  console.error(newBoard);
-};
+const addBoard = (boardObject) => axios.post(`${baseUrl}/boards.json`, boardObject);
 
-export default { getUserBoards, addNewBoard };
+export default { getUserBoards, addBoard };

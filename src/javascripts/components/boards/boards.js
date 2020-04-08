@@ -1,42 +1,14 @@
-import axios from 'axios';
 import firebase from 'firebase/app';
 import 'firebase/auth';
+import axios from 'axios';
 import apiKeys from '../../helpers/apiKeys.json';
 import utils from '../../helpers/utils';
 import pinData from '../../helpers/data/pinData';
 import boardData from '../../helpers/data/boardData';
 import pinsComp from '../pins/pins';
+import newBoardForm from './newBoardForm';
 
 const baseUrl = apiKeys.firebaseKeys.databaseURL;
-
-// HIDES THE SINGLE BOARD MODAL
-const closeNewBoardForm = () => {
-  $('#newBoardModal').modal('hide');
-};
-
-// BUILDS INPUT FORM INTO MODAL CONTAINER
-const boardInputForm = () => {
-  let domString = '';
-  domString += '<div>';
-  domString += '<label for="boardNameInput">Board Name:</label>';
-  domString += '<input class="form-control" id="input-board-name" type="text" placeholder="Inspiration">';
-  domString += '<br><label for="boardDescInput">Description:</label>';
-  domString += '<input class="form-control" id="input-board-desc" type="text" placeholder="New ideas that motivate me">';
-  domString += '<br><button class="col-12 btn btn-danger red-btn" id="submit-new-board">Submit</button>';
-  domString += '</div>';
-  utils.printToDom('new-board-modal-container', domString);
-};
-
-
-// OPENS NEW BOARD INPUT FORM MODAL
-// ASSIGNS CLICK EVENTS FOR CLOSE AND SUBMIT BUTTONS
-const newBoardModal = () => {
-  boardInputForm();
-  $('#newBoardModal').modal('show');
-  $('#close-board-form').on('click', closeNewBoardForm);
-  $('#submit-new-board').on('click', boardData.addNewBoard);
-  // $('body').on('click', '#submit-new-board', console.error('submitted!'));
-};
 
 // DELETES SINGLE BOARD WHEN TRASH BUTTON IS CLICKED
 // THEN RE-PRINTS REMAINING BOARDS (REFRESHED VERSION)
@@ -57,14 +29,29 @@ const deleteBoard = (e) => new Promise((resolve, reject) => {
     .catch((err) => reject(err));
 });
 
+const submitNewBoard = (e) => {
+  e.preventDefault();
+  const newBoard = {
+    name: $('#input-board-name').val(),
+    description: $('#input-board-desc').val(),
+    uid: firebase.auth().currentUser.uid,
+  };
+  boardData.addBoard(newBoard)
+    .then(() => {
+      // eslint-disable-next-line no-use-before-define
+      boardBuilder();
+    })
+    .catch((err) => console.error('could not add board', err));
+};
+
 // CALLS getUserBoards TO GET ONLY BOARDS BELONGING TO LOGGED-IN USER
 // BUILDS CARD FOR EACH BOARD AND PRINTS INTO boards DIV
 // ASSIGNS CLICK EVENT TO EACH DELETE BUTTON, WHICH WILL DELETE BOARD
 // ASSIGNS CLICK EVENT TO EACH CARD, WHICH WILL OPEN SINGLE VIEW AND BUILD PINS
-// ASSIGNS CLICK EVENT TO NEW BOARD BUTTON, WHICH WILL OPEN INPUT FORM MODAL
+// ASSIGNS CLICK EVENT TO NEW BOARD BUTTON, WHICH WILL OPEN INPUT FORM
 const boardBuilder = () => {
   let domString = '';
-  domString += '<h1>BOARDS:</h1>';
+  domString += '<div class="row wrap col-12 boards-header"><h1>Boards:</h1> <button class="btn btn-danger red-btn offset-1 align-self-center" id="add-board"><i class="fas fa-plus"></i></button></div>';
   const currentUserUid = firebase.auth().currentUser.uid;
   boardData.getUserBoards(currentUserUid)
     .then((board) => {
@@ -81,13 +68,14 @@ const boardBuilder = () => {
         domString += '</div>';
       });
       domString += '</div>';
-      domString += '<button class="btn btn-danger red-btn col-2" id="add-board"><i class="fas fa-plus"></i> New Board</button><br>';
+      domString += '<br>';
       utils.printToDom('boards', domString);
     })
     .catch((err) => console.error('problem with boardBuilder', err));
   $('body').on('click', '.delete-board', deleteBoard);
-  $('body').on('click', '.board-card', pinsComp.pinModalBuilder);
-  $('body').on('click', '#add-board', newBoardModal);
+  $('body').on('click', '.board-card', pinsComp.pinBuilder);
+  $('body').on('click', '#add-board', newBoardForm.boardFormBuilder);
+  $('body').on('click', '#submit-new-board', submitNewBoard);
 };
 
 export default { boardBuilder };
