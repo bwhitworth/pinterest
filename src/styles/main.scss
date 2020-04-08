@@ -15,17 +15,18 @@ nav {
   }
 }
 
-i {
-  color: $red;
-}
-
 .card-header {
   background-color: $red;
   color: white;
 }
 
-.delete {
+.delete-board {
+  margin-bottom: 15px;
   font-size: 10px;
+}
+
+.fa-pinterest {
+  color: $red;
 }
 
 .hide {
@@ -42,4 +43,10 @@ i {
 
 .pin-card {
   margin: 1%;
+}
+
+.red-btn {
+  background-color: $red;
+  border: $red;
+  margin-top: 15px;
 }

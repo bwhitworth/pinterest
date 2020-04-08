@@ -17,20 +17,9 @@
   <div id="auth"></div>
   <!-- H1 TAGS DISPLAY, DEPENDING ON AUTH STATUS -->
   <div id="home"><h1>PINTEREST</h1></div>
-  <div id="boards" class="hide"></div>
-  <!-- SINGLE BOARD MODAL -->
-  <div class="modal fade" id="singleBoardModal" tabindex="-1" role="dialog" aria-labelledby="singleBoardModalLabel" aria-hidden="true">
-    <div class="modal-dialog  modal-lg" role="document">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title" id="exampleModalLabel">Pins on this Board:</h5>
-          <button id="close-board" class="btn btn-outline-dark"><i class="far fa-times-circle"></i> Close</button>
-        </div>
-        <div id="single-board-modal" class="modal-body"></div>
-      </div>
-    </div>
+  <div class="row">
+    <div id="boards" class="hide col-8"></div>
+    <div id="single-container" class="col-4"></div>
   </div>
-  <!-- SINGLE BOARD DIV -->
-  <div id="single-board"></div>
 </body>
 </html>

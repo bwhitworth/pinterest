@@ -20,4 +20,6 @@ const getUserBoards = (uid) => new Promise((resolve, reject) => {
     .catch((err) => reject(err));
 });
 
-export default { getUserBoards };
+const addBoard = (boardObject) => axios.post(`${baseUrl}/boards.json`, boardObject);
+
+export default { getUserBoards, addBoard };

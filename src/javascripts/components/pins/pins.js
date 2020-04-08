@@ -5,11 +5,6 @@ import pinData from '../../helpers/data/pinData';
 
 const baseUrl = apiKeys.firebaseKeys.databaseURL;
 
-// HIDES THE SINGLE BOARD MODAL
-const closeSingleBoardView = () => {
-  $('#singleBoardModal').modal('hide');
-};
-
 // DELETES SINGLE PIN WHEN TRASH BUTTON IS CLICKED
 // THEN RE-PRINTS REMAINING PINS (REFRESHED VERSION)
 const deletePin = (e) => new Promise((resolve, reject) => {
@@ -30,32 +25,31 @@ const pinCardBuilder = (boardId) => {
   pinData.getPins(boardId)
     .then((board) => {
       let domString = '';
+      domString += '<h1>Pins:</h1>';
       domString += '<div class="row">';
       board.forEach((p) => {
-        domString += `<div class="card pin-card" id="${p.id}" style="width: 30%">`;
+        domString += `<div class="card pin-card" id="${p.id}">`;
         domString += '  <div class="img-container">';
         domString += `    <img src="${p.imageUrl}" class="card-img-top">`;
         domString += '  </div>';
         domString += `  <div class="card-body" id="${boardId}">`;
         domString += `    <p class="card-text">${p.name}</p>`;
-        domString += `    <button class="btn btn-secondary delete delete-btn" id="delete-${p.id}"><i class="far fa-trash-alt text-white"></i> Delete Pin</button>`;
+        domString += `    <button class="btn btn-secondary delete delete-btn" id="delete-${p.id}"><i class="far fa-trash-alt"></i> Delete Pin</button>`;
         domString += '  </div>';
         domString += '</div>';
       });
+      domString += '<button class="btn btn-danger red-btn" id="add-board"><i class="fas fa-plus"></i> New Pin</button>';
       domString += '</div>';
-      utils.printToDom('single-board-modal', domString);
+      utils.printToDom('single-container', domString);
     });
 };
 
 // TARGETS THE BOARD CLICKED ON AND PASSES INTO PINCARDBUILDER
-// OPENS SINGLE BOARD VIEW MODAL
-// ASSIGNS CLICK EVENTS FOR: CLOSE SINGLE BOARD VIEW MODAL AND DELETE PIN BUTTONS
-const pinModalBuilder = (e) => {
+// ASSIGNS CLICK EVENTS FOR DELETE PIN BUTTONS
+const pinBuilder = (e) => {
   const boardId = e.target.closest('.card').id;
   pinCardBuilder(boardId);
-  $('#singleBoardModal').modal('show');
-  $('#close-board').on('click', closeSingleBoardView);
   $('body').on('click', '.delete-btn', deletePin);
 };
 
-export default { pinModalBuilder };
+export default { pinBuilder };
