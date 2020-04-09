@@ -1,6 +1,6 @@
 import utils from '../../helpers/utils';
 
-// BUILDS INPUT FORM INTO MODAL CONTAINER
+// BUILDS INPUT FORM
 const boardFormBuilder = () => {
   let domString = '';
   domString += '<h2>New Board:</h2>';

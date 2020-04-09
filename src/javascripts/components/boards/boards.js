@@ -29,6 +29,7 @@ const deleteBoard = (e) => new Promise((resolve, reject) => {
     .catch((err) => reject(err));
 });
 
+// CAPTURES INPUT FORM VALUES AND PUSHES TO FIREBASE (ADDBOARD)
 const submitNewBoard = (e) => {
   e.preventDefault();
   const newBoard = {
@@ -36,6 +37,7 @@ const submitNewBoard = (e) => {
     description: $('#input-board-desc').val(),
     uid: firebase.auth().currentUser.uid,
   };
+  console.error(newBoard);
   boardData.addBoard(newBoard)
     .then(() => {
       // eslint-disable-next-line no-use-before-define
@@ -51,7 +53,8 @@ const submitNewBoard = (e) => {
 // ASSIGNS CLICK EVENT TO NEW BOARD BUTTON, WHICH WILL OPEN INPUT FORM
 const boardBuilder = () => {
   let domString = '';
-  domString += '<div class="row wrap col-12 boards-header"><h1>Boards:</h1> <button class="btn btn-danger red-btn offset-1 align-self-center" id="add-board"><i class="fas fa-plus"></i></button></div>';
+  domString += '<div class="row wrap col-12 boards-header"><h1>Boards:</h1>';
+  domString += '<button class="btn btn-danger red-btn offset-1 align-self-center" id="add-board"><i class="fas fa-plus"></i></button></div>';
   const currentUserUid = firebase.auth().currentUser.uid;
   boardData.getUserBoards(currentUserUid)
     .then((board) => {

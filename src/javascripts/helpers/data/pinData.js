@@ -20,4 +20,8 @@ const getPins = (boardId) => new Promise((resolve, reject) => {
     .catch((err) => reject(err));
 });
 
-export default { getPins };
+// PUSHES NEW PIN OBJECT INTO FIREBASE DATA COLLECTION
+const addPin = (pinObject) => axios.post(`${baseUrl}/pins.json`, pinObject);
+
+
+export default { getPins, addPin };

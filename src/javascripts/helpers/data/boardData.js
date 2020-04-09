@@ -20,6 +20,7 @@ const getUserBoards = (uid) => new Promise((resolve, reject) => {
     .catch((err) => reject(err));
 });
 
+// PUSHES NEW BOARD OBJECT INTO FIREBASE DATA COLLECTION
 const addBoard = (boardObject) => axios.post(`${baseUrl}/boards.json`, boardObject);
 
 export default { getUserBoards, addBoard };
