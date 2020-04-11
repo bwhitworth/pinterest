@@ -2,7 +2,6 @@ import axios from 'axios';
 import apiKeys from '../../helpers/apiKeys.json';
 import utils from '../../helpers/utils';
 import pinData from '../../helpers/data/pinData';
-import newPinForm from './newPinForm';
 
 const baseUrl = apiKeys.firebaseKeys.databaseURL;
 
@@ -24,20 +23,20 @@ const deletePin = (e) => new Promise((resolve, reject) => {
 const submitNewPin = (e) => {
   e.preventDefault();
   const newPin = {
-    name: $('#input-pin-name').val(),
-    description: $('#input-board-desc').val(),
+    name: $('#input-pin-n').val(),
+    description: $('#input-pin-desc').val(),
     imageUrl: $('#input-pin-img').val(),
   };
   console.error(newPin);
 };
 
-//   boardData.addBoard(newBoard)
-//     .then(() => {
-//       // eslint-disable-next-line no-use-before-define
-//       boardBuilder();
-//     })
-//     .catch((err) => console.error('could not add board', err));
-// };
+  pinData.addPine(newPin)
+    .then(() => {
+      // eslint-disable-next-line no-use-before-define
+      boardBuilder();
+    })
+    .catch((err) => console.error('could not add board', err));
+};
 
 // GETS PINS FOR THE BOARD THAT WAS PASSED IN
 // BUILDS (MINI) CARD FOR EACH PIN AND PRINTS INTO BOARD CONTAINER
@@ -62,8 +61,6 @@ const pinCardBuilder = (boardId) => {
       domString += '</div>';
       utils.printToDom('single-container', domString);
     });
-  $('body').on('click', '#add-pin', newPinForm.pinFormBuilder);
-  $('body').on('click', '#submit-new-pin', submitNewPin);
 };
 
 // TARGETS THE BOARD CLICKED ON AND PASSES INTO PINCARDBUILDER
@@ -74,4 +71,4 @@ const pinBuilder = (e) => {
   $('body').on('click', '.delete-btn', deletePin);
 };
 
-export default { pinBuilder };
+export default { pinBuilder, submitNewPin };
