@@ -59,9 +59,9 @@ const boardBuilder = () => {
   domString += '<button class="btn btn-danger red-btn offset-1 align-self-center" id="add-board"><i class="fas fa-plus"></i></button></div>';
   const currentUserUid = firebase.auth().currentUser.uid;
   boardData.getUserBoards(currentUserUid)
-    .then((board) => {
+    .then((boards) => {
       domString += '<div class="row wrap">';
-      board.forEach((b) => {
+      boards.forEach((b) => {
         domString += '<div class="col-4">';
         domString += `  <div class="card board-card" id="${b.id}" label="${b.name}">`;
         domString += `    <h5 class="card-header">${b.name}</h5>`;
