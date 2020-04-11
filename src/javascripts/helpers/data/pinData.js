@@ -21,7 +21,7 @@ const getPins = (boardId) => new Promise((resolve, reject) => {
 });
 
 // PUSHES NEW PIN OBJECT INTO FIREBASE DATA COLLECTION
-const addPin = (pinObject) => axios.post(`${baseUrl}/pins.json`, pinObject);
+const addNewPin = (pinObject) => axios.post(`${baseUrl}/pins.json`, pinObject);
 
 
-export default { getPins, addPin };
+export default { getPins, addNewPin };

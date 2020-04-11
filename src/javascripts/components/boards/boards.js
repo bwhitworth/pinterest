@@ -7,7 +7,7 @@ import pinData from '../../helpers/data/pinData';
 import boardData from '../../helpers/data/boardData';
 import pinsComp from '../pins/pins';
 import newBoardForm from './newBoardForm';
-import newPinForm from '../pins/newPinForm';
+// import newPinForm from '../pins/newPinForm';
 
 
 const baseUrl = apiKeys.firebaseKeys.databaseURL;
@@ -81,7 +81,6 @@ const boardBuilder = () => {
   $('body').on('click', '.board-card', pinsComp.pinBuilder);
   $('body').on('click', '#add-board', newBoardForm.boardFormBuilder);
   $('body').on('click', '#submit-new-board', submitNewBoard);
-  $('body').on('click', '#add-pin', newPinForm.pinFormBuilder);
   $('body').on('click', '#submit-new-pin', pinsComp.submitNewPin);
 };
 
