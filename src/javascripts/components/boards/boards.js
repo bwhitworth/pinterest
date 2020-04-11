@@ -78,7 +78,7 @@ const boardBuilder = () => {
     })
     .catch((err) => console.error('problem with boardBuilder', err));
   $('body').on('click', '.delete-board', deleteBoard);
-  $('body').on('click', '.board-card', pinsComp.pinBuilder);
+  $('body').on('click', '.board-card', pinsComp.pinBuilderEvent);
   $('body').on('click', '#add-board', newBoardForm.boardFormBuilder);
   $('body').on('click', '#submit-new-board', submitNewBoard);
   $('body').on('click', '#submit-new-pin', pinsComp.submitNewPin);

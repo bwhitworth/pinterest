@@ -3,6 +3,7 @@ import apiKeys from '../../helpers/apiKeys.json';
 import utils from '../../helpers/utils';
 import pinData from '../../helpers/data/pinData';
 import newPinForm from './newPinForm';
+import pinEditor from './pinEditor';
 
 const baseUrl = apiKeys.firebaseKeys.databaseURL;
 
@@ -55,7 +56,8 @@ const pinCardBuilder = (boardId) => {
         domString += '  </div>';
         domString += `  <div class="card-body" id="${boardId}">`;
         domString += `    <p class="card-text">${p.name}</p>`;
-        domString += `    <button class="btn btn-secondary delete delete-btn" id="delete-${p.id}"><i class="far fa-trash-alt"></i> Delete Pin</button>`;
+        domString += `    <button class="btn btn-secondary delete delete-btn" id="delete-${p.id}"><i class="far fa-trash-alt"></i> Delete</button>`;
+        domString += '    <button class="btn btn-secondary edit edit-btn""><i class="far fa-edit"></i> Edit</button>';
         domString += '  </div>';
         domString += '</div>';
       });
@@ -68,10 +70,11 @@ const pinCardBuilder = (boardId) => {
 
 // TARGETS THE BOARD CLICKED ON AND PASSES INTO PINCARDBUILDER
 // ASSIGNS CLICK EVENTS FOR DELETE PIN BUTTONS
-const pinBuilder = (e) => {
+const pinBuilderEvent = (e) => {
   const boardId = e.target.closest('.card').id;
   pinCardBuilder(boardId);
   $('body').on('click', '.delete-btn', deletePin);
+  $('body').on('click', '.edit-btn', pinEditor.showPinEditor);
 };
 
-export default { pinBuilder, submitNewPin };
+export default { pinBuilderEvent, submitNewPin };
