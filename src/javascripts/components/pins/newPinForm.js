@@ -5,7 +5,7 @@ const pinFormBuilder = (e) => {
   const boardId = e.target.closest('.add-pin').id;
   let domString = '';
   domString += '<h2>New Pin:</h2>';
-  domString += `<form class="pin-form" id=${boardId}>`;
+  domString += `<form class="pin-form col-10" id=${boardId}>`;
   domString += '  <div class="form-group>';
   domString += '    <br><label for="input-pin-n">Name:</label>';
   domString += '      <input class="form-control" id="input-pin-name" type="text" placeholder="name your pin">';
