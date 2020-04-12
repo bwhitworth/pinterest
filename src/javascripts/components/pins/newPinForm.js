@@ -15,7 +15,6 @@ const pinFormBuilder = (e) => {
   domString += '  </div>';
   domString += '</form>';
   utils.printToDom('single-container', domString);
-  console.error(boardId);
 };
 
 export default { pinFormBuilder };

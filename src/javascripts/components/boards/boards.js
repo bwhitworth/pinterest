@@ -7,7 +7,8 @@ import pinData from '../../helpers/data/pinData';
 import boardData from '../../helpers/data/boardData';
 import pinsComp from '../pins/pins';
 import newBoardForm from './newBoardForm';
-// import newPinForm from '../pins/newPinForm';
+import newPinForm from '../pins/newPinForm';
+import pinEditor from '../pins/pinEditor';
 
 
 const baseUrl = apiKeys.firebaseKeys.databaseURL;
@@ -39,7 +40,6 @@ const submitNewBoard = (e) => {
     description: $('#input-board-desc').val(),
     uid: firebase.auth().currentUser.uid,
   };
-  console.error(newBoard);
   boardData.addBoard(newBoard)
     .then(() => {
       // eslint-disable-next-line no-use-before-define
@@ -59,9 +59,9 @@ const boardBuilder = () => {
   domString += '<button class="btn btn-danger red-btn offset-1 align-self-center" id="add-board"><i class="fas fa-plus"></i></button></div>';
   const currentUserUid = firebase.auth().currentUser.uid;
   boardData.getUserBoards(currentUserUid)
-    .then((board) => {
+    .then((boards) => {
       domString += '<div class="row wrap">';
-      board.forEach((b) => {
+      boards.forEach((b) => {
         domString += '<div class="col-4">';
         domString += `  <div class="card board-card" id="${b.id}" label="${b.name}">`;
         domString += `    <h5 class="card-header">${b.name}</h5>`;
@@ -78,10 +78,13 @@ const boardBuilder = () => {
     })
     .catch((err) => console.error('problem with boardBuilder', err));
   $('body').on('click', '.delete-board', deleteBoard);
-  $('body').on('click', '.board-card', pinsComp.pinBuilder);
+  $('body').on('click', '.board-card', pinsComp.pinBuilderEvent);
   $('body').on('click', '#add-board', newBoardForm.boardFormBuilder);
   $('body').on('click', '#submit-new-board', submitNewBoard);
   $('body').on('click', '#submit-new-pin', pinsComp.submitNewPin);
+  $('body').on('click', '.add-pin', newPinForm.pinFormBuilder);
+  $('body').on('click', '.edit-btn', pinEditor.showPinEditor);
+  $('body').on('click', '.save-btn', pinData.submitPinChange);
 };
 
 export default { boardBuilder };
