@@ -1,6 +1,6 @@
 import utils from '../../helpers/utils';
 
-// BUILDS INPUT FORM
+// BUILDS INPUT FORM USED TO ADD NEW PIN
 const pinFormBuilder = (e) => {
   const boardId = e.target.closest('.add-pin').id;
   let domString = '';

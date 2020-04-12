@@ -10,7 +10,6 @@ import newBoardForm from './newBoardForm';
 import newPinForm from '../pins/newPinForm';
 import pinEditor from '../pins/pinEditor';
 
-
 const baseUrl = apiKeys.firebaseKeys.databaseURL;
 
 // DELETES SINGLE BOARD WHEN TRASH BUTTON IS CLICKED
@@ -48,11 +47,21 @@ const submitNewBoard = (e) => {
     .catch((err) => console.error('could not add board', err));
 };
 
+// CONSOLIDATE CLICK EVENTS TO SINGLE FUNCTION
+const clickEvents = () => {
+  $('body').on('click', '.delete-board', deleteBoard);
+  $('body').on('click', '.board-card', pinsComp.pinBuilderEvent);
+  $('body').on('click', '#add-board', newBoardForm.boardFormBuilder);
+  $('body').on('click', '#submit-new-board', submitNewBoard);
+  $('body').on('click', '#submit-new-pin', pinsComp.submitNewPin);
+  $('body').on('click', '.add-pin', newPinForm.pinFormBuilder);
+  $('body').on('click', '.edit-btn', pinEditor.showPinEditor);
+  $('body').on('click', '.save-btn', pinData.submitPinChange);
+};
+
 // CALLS getUserBoards TO GET ONLY BOARDS BELONGING TO LOGGED-IN USER
 // BUILDS CARD FOR EACH BOARD AND PRINTS INTO boards DIV
-// ASSIGNS CLICK EVENT TO EACH DELETE BUTTON, WHICH WILL DELETE BOARD
-// ASSIGNS CLICK EVENT TO EACH CARD, WHICH WILL OPEN SINGLE VIEW AND BUILD PINS
-// ASSIGNS CLICK EVENT TO NEW BOARD BUTTON, WHICH WILL OPEN INPUT FORM
+// ASSIGNS CLICK EVENTS TO BUTTONS
 const boardBuilder = () => {
   let domString = '';
   domString += '<div class="row wrap col-12 boards-header"><h1>Boards:</h1>';
@@ -77,14 +86,7 @@ const boardBuilder = () => {
       utils.printToDom('boards', domString);
     })
     .catch((err) => console.error('problem with boardBuilder', err));
-  $('body').on('click', '.delete-board', deleteBoard);
-  $('body').on('click', '.board-card', pinsComp.pinBuilderEvent);
-  $('body').on('click', '#add-board', newBoardForm.boardFormBuilder);
-  $('body').on('click', '#submit-new-board', submitNewBoard);
-  $('body').on('click', '#submit-new-pin', pinsComp.submitNewPin);
-  $('body').on('click', '.add-pin', newPinForm.pinFormBuilder);
-  $('body').on('click', '.edit-btn', pinEditor.showPinEditor);
-  $('body').on('click', '.save-btn', pinData.submitPinChange);
+  clickEvents();
 };
 
 export default { boardBuilder };

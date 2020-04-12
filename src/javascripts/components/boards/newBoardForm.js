@@ -1,6 +1,6 @@
 import utils from '../../helpers/utils';
 
-// BUILDS INPUT FORM
+// BUILDS INPUT FORM USED TO ADD NEW BOARD
 const boardFormBuilder = () => {
   let domString = '';
   domString += '<h2>New Board:</h2>';
