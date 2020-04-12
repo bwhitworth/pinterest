@@ -33,7 +33,7 @@ NSS homework project, which introduces:
 ![screenshot](screenshots/main-edit-pin.png)
 
 ### Instructions to Run:
-[Click here to view the deployed web app](www.google.com)
+[Click here to view the deployed web app](https://pinterest-19b.firebaseapp.com/)
 
 Or, Run Locally:
 1. If you do not have npm http-server installed, follow instuctions [here](https://www.npmjs.com/package/http-server) to install on your device

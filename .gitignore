@@ -4,8 +4,8 @@ package-lock.json
 node_modules/
 dist/
 build/
-.firebase/
 src/javascripts/helpers/apiKeys.json
+.firebase/
 
 # Logs
 logs
