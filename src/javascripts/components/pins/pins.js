@@ -47,18 +47,18 @@ const pinCardBuilder = (boardId) => {
       domString += '<h1>Pins:</h1>';
       domString += '<div class="row">';
       board.forEach((p) => {
-        domString += `<div class="card pin-card" id="${p.id}">`;
+        domString += `<div class="card pin-card col-5" id="${p.id}">`;
         domString += '  <div class="img-container">';
         domString += `    <img src="${p.imageUrl}" class="card-img-top">`;
         domString += '  </div>';
         domString += `  <div class="card-body" id="${boardId}">`;
         domString += `    <p class="card-text">${p.name}</p>`;
-        domString += `    <button class="btn btn-secondary delete delete-btn" id="delete-${p.id}"><i class="far fa-trash-alt"></i> Delete</button>`;
-        domString += '    <button class="btn btn-secondary edit edit-btn""><i class="far fa-edit"></i> Edit</button>';
+        domString += `    <button class="btn btn-secondary delete delete-btn pin-btn" id="delete-${p.id}"><i class="far fa-trash-alt"></i> Delete</button>`;
+        domString += '    <button class="btn btn-secondary edit edit-btn pin-btn""><i class="far fa-edit"></i> Edit</button>';
         domString += '  </div>';
         domString += '</div>';
       });
-      domString += `<button class="btn btn-danger red-btn add-pin" id="${idThatBoard}"><i class="fas fa-plus"></i> New Pin</button>`;
+      domString += `<button class="btn btn-danger red-btn add-pin col-8" id="${idThatBoard}"><i class="fas fa-plus"></i> New Pin</button>`;
       domString += '</div>';
       utils.printToDom('single-container', domString);
     });

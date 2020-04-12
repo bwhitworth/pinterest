@@ -14,7 +14,7 @@ const showPinEditor = (e) => {
   boardData.getUserBoards(currentUserUid)
     .then((boards) => {
       boards.forEach((b) => {
-        domString += '<div class="form-check">';
+        domString += '<div class="form-check col-10">';
         domString += `  <input class="form-check-input board-radio-btn" type="radio" name="exampleRadios" id="${b.id}" value="option2">`;
         domString += `  <label class="form-check-label" for="exampleRadios2">${b.name}</label>`;
         domString += '</div>';

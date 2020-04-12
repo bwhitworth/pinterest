@@ -4,7 +4,7 @@ import utils from '../../helpers/utils';
 const boardFormBuilder = () => {
   let domString = '';
   domString += '<h2>New Board:</h2>';
-  domString += '<form>';
+  domString += '<form class="col-10">';
   domString += '  <div class="form-group>';
   domString += '    <label for="input-board-name">Board Name:</label>';
   domString += '      <input class="form-control input-board-name" id="input-board-name" type="text" placeholder="Inspiration">';
