@@ -24,15 +24,18 @@ const getPins = (boardId) => new Promise((resolve, reject) => {
 // PUSHES NEW PIN OBJECT INTO FIREBASE DATA COLLECTION
 const addNewPin = (pinObject) => axios.post(`${baseUrl}/pins.json`, pinObject);
 
+// PUSHES UPDATED KEY FOR A PIN OBJECT INTO FIREBASE DATA COLLECTION
 const updatePin = (newBoardAssignment, pinId) => axios.patch(`${baseUrl}/pins/${pinId}.json`, { boardId: newBoardAssignment });
 
-
+// CAPTURES ID OF PIN TO EDIT, FROM THE SAVE BUTTON (PASSED FORWARD)
+// CAPTURES WHICH RADIO BUTTON HAS BEEN SELECTED
+// CALLS AXIOS TO UPDATE THE PIN WITH BOARD SELECTION
+// REFRESHES THE CURRENT VIEW OF PINS TO A SAVE CONFIRMATION MESSAGE
 const submitPinChange = (e) => {
   const pinId = e.target.closest('.save-btn').id;
   const selectedBoard = utils.getRadioVal();
   updatePin(selectedBoard, pinId);
   $('#single-container').html('<h2>Saved!</h2>');
 };
-
 
 export default { getPins, addNewPin, submitPinChange };

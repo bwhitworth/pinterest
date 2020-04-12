@@ -2,8 +2,6 @@ import axios from 'axios';
 import apiKeys from '../../helpers/apiKeys.json';
 import utils from '../../helpers/utils';
 import pinData from '../../helpers/data/pinData';
-// import newPinForm from './newPinForm';
-// import pinEditor from './pinEditor';
 
 const baseUrl = apiKeys.firebaseKeys.databaseURL;
 
@@ -13,15 +11,16 @@ const deletePin = (e) => new Promise((resolve, reject) => {
   const pinToDelete = e.target.closest('.pin-card').id;
   const parentBoard = e.target.closest('.card-body').id;
   axios.delete(`${baseUrl}/pins/${pinToDelete}.json`)
-    .then((response) => {
+    .then(() => {
       // eslint-disable-next-line no-use-before-define
       pinCardBuilder(parentBoard);
-      resolve(response);
     })
     .catch((err) => reject(err));
 });
 
-
+// TARGETS ID ATTACHED TO PIN FORM (CARRIED OVER PIN ID)
+// CREATES NEW PIN OBJECT AND PERFORMS AXIOS POST
+// RE-BUILDS THE PINS FOR THAT BOARD (REFRESHED VERSION)
 const submitNewPin = (e) => {
   e.preventDefault();
   const boardTarget = e.target.closest('.pin-form');
@@ -30,8 +29,6 @@ const submitNewPin = (e) => {
     name: $('#input-pin-name').val(),
     imageUrl: $('#input-pin-img').val(),
   };
-  console.error(newPin);
-
   pinData.addNewPin(newPin)
     .then(() => {
       // eslint-disable-next-line no-use-before-define

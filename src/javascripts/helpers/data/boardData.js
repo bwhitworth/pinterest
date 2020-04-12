@@ -5,7 +5,7 @@ const baseUrl = apiKeys.firebaseKeys.databaseURL;
 
 // GETS DATA FROM BOARDS.JSON IN FIREBASE,
 // RETRIEVES DATA FOR BOARDS THAT BELONG TO LOGGED IN USER (uid SAME)
-// ADDS NEW ID KEY TO EACH OBJECT, THEN PUSHES INTO EMTPY ARRAY (userBoards)
+// ADDS NEW ID KEY TO EACH OBJECT, THEN PUSHES INTO EMPTY ARRAY (userBoards) FOR CONSUMPTION
 const getUserBoards = (uid) => new Promise((resolve, reject) => {
   axios.get(`${baseUrl}/boards.json?orderBy="uid"&equalTo="${uid}"`)
     .then((response) => {

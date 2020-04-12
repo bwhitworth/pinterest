@@ -3,7 +3,8 @@ import 'firebase/auth';
 import utils from '../../helpers/utils';
 import boardData from '../../helpers/data/boardData';
 
-// BUILDS INPUT FORM
+// GETS ID OF PIN TO BE EDITED
+// BUILDS RADIO BUTTON GROUP OF EXISTING BOARDS FOR SELECTION
 const showPinEditor = (e) => {
   const pinId = e.target.closest('.pin-card').id;
   let domString = '';
