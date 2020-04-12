@@ -1,5 +1,6 @@
 import axios from 'axios';
 import apiKeys from '../apiKeys.json';
+import utils from '../utils';
 
 const baseUrl = apiKeys.firebaseKeys.databaseURL;
 
@@ -23,5 +24,15 @@ const getPins = (boardId) => new Promise((resolve, reject) => {
 // PUSHES NEW PIN OBJECT INTO FIREBASE DATA COLLECTION
 const addNewPin = (pinObject) => axios.post(`${baseUrl}/pins.json`, pinObject);
 
+const updatePin = (newBoardAssignment, pinId) => axios.patch(`${baseUrl}/pins/${pinId}.json`, { boardId: newBoardAssignment });
 
-export default { getPins, addNewPin };
+
+const submitPinChange = (e) => {
+  const pinId = e.target.closest('.save-btn').id;
+  const selectedBoard = utils.getRadioVal();
+  updatePin(selectedBoard, pinId);
+  $('#single-container').html('<h2>Saved!</h2>');
+};
+
+
+export default { getPins, addNewPin, submitPinChange };

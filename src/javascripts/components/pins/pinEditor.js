@@ -8,19 +8,20 @@ const showPinEditor = (e) => {
   const pinId = e.target.closest('.pin-card').id;
   let domString = '';
   domString += `<h2 id=${pinId}>Edit Pin</h2>`;
-  domString += '<div class="custom-control custom-radio col">';
+  domString += '<p>Select Board:</p>';
   const currentUserUid = firebase.auth().currentUser.uid;
   boardData.getUserBoards(currentUserUid)
     .then((boards) => {
       boards.forEach((b) => {
-        domString += `<input type="radio" id="${b.id}" name="customRadio" class="custom-control-input board-radio-btns">`;
-        domString += `<label class="custom-control-label pr-2" for="${b.name}">${b.name}</label><br>`;
+        domString += '<div class="form-check">';
+        domString += `  <input class="form-check-input board-radio-btn" type="radio" name="exampleRadios" id="${b.id}" value="option2">`;
+        domString += `  <label class="form-check-label" for="exampleRadios2">${b.name}</label>`;
+        domString += '</div>';
       });
-      domString += '  </div>';
+      domString += `<button class="btn btn-secondary save-btn red-btn" id="${pinId}"><i class="fas fa-check-circle"></i> Save</button>`;
       utils.printToDom('single-container', domString);
     })
     .catch((err) => console.error('problem with boardBuilder', err));
-  console.error(pinId);
 };
 
 export default { showPinEditor };

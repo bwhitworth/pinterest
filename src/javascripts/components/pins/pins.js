@@ -2,8 +2,8 @@ import axios from 'axios';
 import apiKeys from '../../helpers/apiKeys.json';
 import utils from '../../helpers/utils';
 import pinData from '../../helpers/data/pinData';
-import newPinForm from './newPinForm';
-import pinEditor from './pinEditor';
+// import newPinForm from './newPinForm';
+// import pinEditor from './pinEditor';
 
 const baseUrl = apiKeys.firebaseKeys.databaseURL;
 
@@ -64,7 +64,6 @@ const pinCardBuilder = (boardId) => {
       domString += `<button class="btn btn-danger red-btn add-pin" id="${idThatBoard}"><i class="fas fa-plus"></i> New Pin</button>`;
       domString += '</div>';
       utils.printToDom('single-container', domString);
-      $('body').on('click', '.add-pin', newPinForm.pinFormBuilder);
     });
 };
 
@@ -74,7 +73,6 @@ const pinBuilderEvent = (e) => {
   const boardId = e.target.closest('.card').id;
   pinCardBuilder(boardId);
   $('body').on('click', '.delete-btn', deletePin);
-  $('body').on('click', '.edit-btn', pinEditor.showPinEditor);
 };
 
 export default { pinBuilderEvent, submitNewPin };
